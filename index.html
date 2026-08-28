@@ -206,7 +206,7 @@
 
   /* ---------- HERO ---------- */
   .hero{
-    padding: 9vh 6vw 12vh;
+    padding: 9vh 6vw 10vh;
     max-width: 1200px;
     margin:0 auto;
     text-align:center;
@@ -290,6 +290,41 @@
   .fs2{ top:35%; right:6%; animation-delay:1.2s; background: var(--cream); }
   .fs3{ bottom:-10%; left:20%; animation-delay:2.4s; }
   @media (max-width:760px){ .float-sticker{ display:none; } }
+
+/* ---------- FLOATING IMAGE BEFORE ORDER ---------- */
+ .sloth-track{
+    position: relative;
+    width: 100%;
+    height: 88px;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 5;
+    margin-top: -6px;
+    margin-bottom: -4px;
+  }
+
+  .walking-sloth{
+  position: absolute;
+  width: 75px;      /* ukuran gambar */
+  height: auto;
+  right: -130px;     /* mulai dari luar kanan */
+  top: 10px;
+  z-index: 10;
+
+  filter: none;
+
+  animation: slothDriftLeft 35s linear infinite;
+}
+
+@keyframes slothDriftLeft{
+  from{
+    transform: translateX(0);
+  }
+
+  to{
+    transform: translateX(calc(-100vw - 260px));
+  }
+}
 
   /* ---------- SECTIONS shared ---------- */
   section{ padding: 8vh 6vw; max-width: 1200px; margin:0 auto; position:relative; }
@@ -530,6 +565,70 @@
   .testi p.quote{ font-style:italic; margin:0 0 14px; line-height:1.5; color: var(--brown); }
   .testi .who{ font-family:'Caveat', cursive; font-size:1.05rem; font-weight:700; color: var(--coral); }
 
+  /* ---------- CONTINUOUS VINE DIVIDER ---------- */
+  .vine-divider{
+    width: 100%;
+    height: 86px;
+    overflow: hidden;
+    line-height: 0;
+    margin-top: 30px;
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .vine-divider svg{
+    width: 100%;
+    height: 86px;
+    display: block;
+    overflow: visible;
+  }
+
+  .vine-art{
+    animation: vineFloat 5s ease-in-out infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  .vine-main{
+    fill: none;
+    stroke: #8EA66F;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .vine-stem{
+    fill: none;
+    stroke: #8EA66F;
+    stroke-width: 3;
+    stroke-linecap: round;
+  }
+
+  .vine-leaf{
+    stroke: #8EA66F;
+    stroke-width: 1.2;
+  }
+
+  @keyframes vineFloat{
+    0%,100%{ transform: translateY(0); }
+    50%{ transform: translateY(-4px); }
+  }
+
+  @media (max-width: 640px){
+    .vine-divider{
+      height: 72px;
+      margin-top: -10px;
+    }
+    .vine-divider svg{
+      height: 72px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .vine-art{ animation: none; }
+  }
+
   /* ---------- FOOTER ---------- */
   footer{
     padding: 40px 6vw 60px;
@@ -597,6 +696,72 @@
   </div>
 </section>
 
+<div class="vine-divider" aria-hidden="true">
+  <svg viewBox="0 0 1200 86" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <g class="vine-art">
+
+      <!-- Satu batang vine yang menyambung dari kiri sampai kanan -->
+      <path
+        class="vine-main"
+        d="M0 20
+           C50 20 65 58 120 58
+           C175 58 190 20 240 20
+           C290 20 305 58 360 58
+           C415 58 430 20 480 20
+           C530 20 545 58 600 58
+           C655 58 670 20 720 20
+           C770 20 785 58 840 58
+           C895 58 910 20 960 20
+           C1010 20 1025 58 1080 58
+           C1135 58 1150 20 1200 20"/>
+
+      <!-- Batang penghubung daun -->
+      <path class="vine-stem" d="M62 47 L78 35"/>
+      <path class="vine-stem" d="M178 35 L194 47"/>
+      <path class="vine-stem" d="M302 47 L318 35"/>
+      <path class="vine-stem" d="M418 35 L434 47"/>
+      <path class="vine-stem" d="M542 47 L558 35"/>
+      <path class="vine-stem" d="M658 35 L674 47"/>
+      <path class="vine-stem" d="M782 47 L798 35"/>
+      <path class="vine-stem" d="M898 35 L914 47"/>
+      <path class="vine-stem" d="M1022 47 L1038 35"/>
+      <path class="vine-stem" d="M1138 35 L1154 47"/>
+
+      <!-- Daun -->
+      <ellipse class="vine-leaf" cx="62" cy="47" rx="13" ry="7"
+               fill="#B9CC9A" transform="rotate(34 62 47)"/>
+
+      <ellipse class="vine-leaf" cx="194" cy="47" rx="13" ry="7"
+               fill="#A9BE86" transform="rotate(-34 194 47)"/>
+
+      <ellipse class="vine-leaf" cx="302" cy="47" rx="13" ry="7"
+               fill="#B9CC9A" transform="rotate(34 302 47)"/>
+
+      <ellipse class="vine-leaf" cx="434" cy="47" rx="13" ry="7"
+               fill="#A9BE86" transform="rotate(-34 434 47)"/>
+
+      <ellipse class="vine-leaf" cx="542" cy="47" rx="13" ry="7"
+               fill="#B9CC9A" transform="rotate(34 542 47)"/>
+
+      <ellipse class="vine-leaf" cx="674" cy="47" rx="13" ry="7"
+               fill="#A9BE86" transform="rotate(-34 674 47)"/>
+
+      <ellipse class="vine-leaf" cx="782" cy="47" rx="13" ry="7"
+               fill="#B9CC9A" transform="rotate(34 782 47)"/>
+
+      <ellipse class="vine-leaf" cx="914" cy="47" rx="13" ry="7"
+               fill="#A9BE86" transform="rotate(-34 914 47)"/>
+
+      <ellipse class="vine-leaf" cx="1022" cy="47" rx="13" ry="7"
+               fill="#B9CC9A" transform="rotate(34 1022 47)"/>
+
+      <ellipse class="vine-leaf" cx="1154" cy="47" rx="13" ry="7"
+               fill="#A9BE86" transform="rotate(-34 1154 47)"/>
+
+    </g>
+  </svg>
+</div>
+
 <section id="produk">
   <div class="section-tag">koleksi</div>
   <h2 class="section-title">Pilih Favoritmu</h2>
@@ -644,6 +809,10 @@
       <a href="#cara" class="cta-btn" onclick="closeProduct()">Order Sekarang</a>
     </div>
   </div>
+</div>
+
+<div class="sloth-track" aria-hidden="true">
+  <img src="Logo Bucket.png" class="walking-sloth" alt="Sloth test">
 </div>
 
 <section id="cara">
