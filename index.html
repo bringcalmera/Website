@@ -935,7 +935,7 @@
       price: 'Rp 18.000',
       desc: 'Akrilik lucu buat gantungan kunci, tas, atau totebag harian kamu. Tahan lama dan gak gampang pudar.',
       variants: [
-        { name: 'Sloth Duduk', emoji: '🦥' },
+        { name: 'Sloth Barong', img : 'Sloth_Barong2.png' },
         { name: 'Sloth Terbang', emoji: '🪂' },
         { name: 'Bintang', emoji: '⭐' },
         { name: 'Awan', emoji: '☁️' }
@@ -971,11 +971,17 @@
   const modalVariants = document.getElementById('modalVariants');
  
   function renderVariant(product, index){
-    const v = product.variants[index];
+  const v = product.variants[index];
+
+  if(v.img){
+    modalMainImg.innerHTML = `<img src="${v.img}" alt="${v.name}">`;
+  } else {
     modalMainImg.textContent = v.emoji;
-    [...modalThumbs.children].forEach((t,i) => t.classList.toggle('active', i===index));
-    [...modalVariants.children].forEach((c,i) => c.classList.toggle('active', i===index));
   }
+
+  [...modalThumbs.children].forEach((t,i) => t.classList.toggle('active', i===index));
+  [...modalVariants.children].forEach((c,i) => c.classList.toggle('active', i===index));
+}
  
   function openProduct(key){
     const product = productData[key];
@@ -989,7 +995,9 @@
     product.variants.forEach((v, i) => {
       const thumb = document.createElement('div');
       thumb.className = 'thumb';
-      thumb.textContent = v.emoji;
+      if(v.img){thumb.innerHTML = `<img src="${v.img}" alt="${v.name}">`;} 
+      else {thumb.textContent = v.emoji;
+      }
       thumb.onclick = () => renderVariant(product, i);
       modalThumbs.appendChild(thumb);
  
